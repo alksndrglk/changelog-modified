@@ -4,20 +4,12 @@ repos:
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
-    -   id: check-yaml
     -   id: debug-statements
-    -   id: double-quote-string-fixer
-    -   id: name-tests-test
     -   id: requirements-txt-fixer
 -   repo: https://github.com/asottile/setup-cfg-fmt
     rev: v2.4.0
     hooks:
     -   id: setup-cfg-fmt
--   repo: https://github.com/asottile/reorder-python-imports
-    rev: v3.10.0
-    hooks:
-    -   id: reorder-python-imports
-        args: [--py38-plus, --add-import, 'from __future__ import annotations']
 -   repo: https://github.com/asottile/add-trailing-comma
     rev: v3.0.1
     hooks:
@@ -27,16 +19,23 @@ repos:
     hooks:
     -   id: pyupgrade
         args: [--py38-plus]
--   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v2.0.2
+-   repo: https://github.com/psf/black
+    rev: 23.3.0
     hooks:
-    -   id: autopep8
--   repo: https://github.com/PyCQA/flake8
-    rev: 6.1.0
+      - id: black
+        language_version: python3.11
+        args: [
+            "--preview",
+            "--line-length=79",
+        ]
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.274
     hooks:
-    -   id: flake8
--   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.4.1
-    hooks:
-    -   id: mypy
-        additional_dependencies: [types-all]
+      - id: ruff
+        args: [
+          "--line-length=79",
+          "--select=E,F,W,C,I,FBT,Q",
+          "--ignore=E402",
+          "--unfixable=FBT",
+          "--fix",
+        ]
