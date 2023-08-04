@@ -5,9 +5,9 @@ from typing import Sequence
 
 
 def find_changelog_in_added_files(
-        filenames: Sequence[str],
-        *,
-        changelog_name: str = 'CHANGELOG.md',
+    filenames: Sequence[str],
+    *,
+    changelog_name: str = "CHANGELOG.md",
 ) -> bool:
     filenames_filtered = set(filenames)
     return changelog_name in filenames_filtered
@@ -16,13 +16,14 @@ def find_changelog_in_added_files(
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        'filenames', nargs='*',
-        help='Filenames pre-commit believes are changed.',
+        "filenames",
+        nargs="*",
+        help="Filenames pre-commit believes are changed.",
     )
     parser.add_argument(
-        '--changelog-name',
-        help='Name of Changelog in project.',
-        default='CHANGELOG.md'
+        "--changelog-name",
+        help="Name of Changelog in project.",
+        default="CHANGELOG.md",
     )
     args = parser.parse_args(argv)
 
@@ -32,5 +33,5 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     raise SystemExit(main())
