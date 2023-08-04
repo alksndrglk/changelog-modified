@@ -1,0 +1,6 @@
+-   id: check-changelog-modified
+    name: check for changelog modified
+    description: prevents pushing without modifying changelog
+    entry: check-changelog-modified
+    language: python
+    stages: [commit, push, manual]
